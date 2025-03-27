@@ -10,6 +10,11 @@ const { Server } = require('socket.io');
 const server = http.createServer(app);
 const io = new Server(server);
 const port = process.env.PORT || 3001;
+
+// ✅ MongoDB 연결 (중복 없이 한 번만)
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch(err => console.error('❌ DB Error:', err));
 app.listen(port, () => {
   console.log(`서버 실행 중: ${port}`);
 });
