@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: community-app
+    env: node
+    buildCommand: npm install
+    startCommand: node app.js
+    plan: free
+    envVars:
+      - key: MONGO_URI
+        value: your-mongodb-uri
+      - key: SESSION_SECRET
+        value: your-secret-key
