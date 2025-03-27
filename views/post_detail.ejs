@@ -1,0 +1,28 @@
+<h2>댓글</h2>
+<ul>
+  <% comments.forEach(c => { %>
+    <li><%= c.author %>: <%= c.content %></li>
+  <% }) %>
+</ul>
+
+<% if (user) { %>
+<form method="POST" action="/posts/<%= post._id %>/comments">
+  <input type="text" name="content" required />
+  <button>댓글 달기</button>
+</form>
+<% } %>
+
+<% if (post.image) { %>
+  <img src="<%= post.image %>" width="300" />
+<% } %>
+
+<form method="POST" action="/posts/<%= post._id %>/like" style="display:inline;">
+  <button class="btn btn-sm btn-success">👍 좋아요 (<%= post.likes %>)</button>
+</form>
+
+<form method="POST" action="/posts/<%= post._id %>/report" style="display:inline;">
+  <button class="btn btn-sm btn-danger">🚨 신고 (<%= post.reports %>)</button>
+</form>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
